@@ -13,12 +13,23 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet"> -->
 	<link rel="stylesheet" href={Astro.resolve("../styles/global.css")}>
-		
+	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
 	<h1 class="text-5xl text-red-500 bg-yellow-500">Hello world</h1>
 	<p class="text-5xl text-red-500 font-body">Hello world</p>
+	<script>
+	if (window.netlifyIdentity) {
+		window.netlifyIdentity.on("init", user => {
+		if (!user) {
+			window.netlifyIdentity.on("login", () => {
+			document.location.href = "/admin/";
+			});
+		}
+		});
+	}
+</script>
 </body>
 
 </html>
