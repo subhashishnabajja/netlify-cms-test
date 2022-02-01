@@ -1,47 +1,47 @@
 backend:
   name: git-gateway
   branch: main
-publish_mode: editorial_workflow
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: public/project-assets
+public_folder: /project-assets
+
 collections:
-  - label: "Globals"
-    name: "globals"
-    files:
-      - label: "Site Copy"
-        name: "site_copy"
-        delete: false
-        create: true
-        file: "_data/copy.json"
-        fields:
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Headline", name: "headline", widget: "string" }
-  - name: "standalone pages"
-    label: "Standalone Pages"
-    folder: "standalone-pages"
-    slug: ""
-    file: "standalone-pages/.mdx"
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/pages"
     create: true
-    extension: mdx
-    format: frontmatter
     fields:
+      - {
+          label: "Layout",
+          name: "layout",
+          default: "../layouts/ProjectLayout.astro",
+          widget: "hidden",
+        }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Cover Image", name: "cover", widget: "image" }
       - {
-          label: "SEO Meta Title",
-          name: "metaTitle",
+          label: "Cover Image Alternative Text",
+          name: "coverAlt",
           widget: "string",
-          required: false,
         }
-      - {
-          label: "SEO Meta Description",
-          name: "metaDesc",
-          widget: "string",
-          required: false,
-        }
-      - {
-          label: "Social Image",
-          name: "socialImage",
-          widget: "image",
-          required: false,
-        }
+      - { label: "Card Image", name: "card", widget: "image" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["project"] }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  # - name: "blogs"
+  #   label: "Blogs"
+  #   label_singular: "Blog"
+  #   folder: "src/content/blogs"
+  #   create: true
+  #   fields:
+  #     - {
+  #         label: "Template Key",
+  #         name: "templateKey",
+  #         widget: "hidden",
+  #         default: "product-page.template",
+  #       }
+  #     - { label: "Name", name: "title", widget: "string" }
+  #     - { label: "Image", name: "image", widget: "image" }
+  #     - { label: "Description", name: "description", widget: "string" }
+  #     - { label: "Ingredients", name: "ingredients", widget: "list" }
